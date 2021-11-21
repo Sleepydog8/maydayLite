@@ -31,10 +31,6 @@ var cart = [
 ]
 var order = []
 
-function myFunction() {
-  document.getElementById('myDropdown').classList.toggle('show')
-}
-
 function addToWishlist(productId) {
   alert('add to wishlist complete!')
   console.log('ssss')
@@ -65,20 +61,6 @@ async function showItemsInWishlist() {}
 async function showItemsInCart() {}
 
 async function showItemsInOrder() {}
-// Close the dropdown if the user clicks outside of it
-
-window.onClick = function (event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName('dropdown-content')
-    var i
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i]
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show')
-      }
-    }
-  }
-}
 
 function ProfileBuyer() {
   useEffect(() => {
@@ -88,18 +70,22 @@ function ProfileBuyer() {
   }, [])
 
   return (
-    <div>
+    <div class="container">
       <container>
-        <div>
+        <br />
+        <div class="d-flex justify-content-between">
           <h1>MayDay</h1>
-          Search
-          <button onClick={() => (window.location.href = '/search-product')}>
-            Product
+          <button
+            onClick={() => (window.location.href = '/search-product')}
+            class="btn btn-light searchBtn"
+            style={{ backgroundColor: '#181D31', color: 'white' }}
+          >
+            Search Product
           </button>
         </div>
         <div>
           <h3> Wishlist </h3>
-          <table class="myTable">
+          <table class="table table-striped table-hover">
             <thead>
               <tr>
                 <th>Product Id</th>
@@ -114,7 +100,7 @@ function ProfileBuyer() {
                   <td>{item.Price}</td>
                   <td>
                     <button
-                      class="deleteBtn"
+                      class="btn btn-outline-secondary"
                       onClick={() => deleteWishlist(item.ProductId)}
                     >
                       Delete
@@ -128,7 +114,7 @@ function ProfileBuyer() {
           <br></br>
 
           <h3>Cart</h3>
-          <table class="myTable">
+          <table class="myTable table">
             <thead>
               <tr>
                 <th>Product Id</th>
@@ -143,7 +129,7 @@ function ProfileBuyer() {
                   <td>{item.Price}</td>
                   <td>
                     <button
-                      class="deleteBtn"
+                      class="btn btn-outline-secondary"
                       onClick={() => deleteCart(item.ProductId)}
                     >
                       Delete
@@ -154,13 +140,12 @@ function ProfileBuyer() {
             </thead>
             <tbody id="cart-productlist"></tbody>
           </table>
-          <button class="confirmBtn" onClick={takeToOrder}>
+          <button class="btn btn-success mt-3 mb-3" onClick={takeToOrder}>
             Take to Order
           </button>
           <br></br>
-          <hr></hr>
           <h3>Order</h3>
-          <table class="myTable">
+          <table class="myTable table">
             <thead>
               <tr>
                 <th>Product Id</th>
@@ -179,23 +164,18 @@ function ProfileBuyer() {
             </thead>
             <tbody id="order-productlist"></tbody>
           </table>
-          <button class="confirmBtn" onClick={checkout}>
+          <button class="btn btn-success" onClick={checkout}>
             Check out
           </button>
           <br></br>
         </div>
         <br></br>
-        <div class="dropdown">
-          <button onClick="myFunction()" class="dropbtn">
-            Switch Account
-          </button>
-          <div id="myDropdown" class="dropdown-content">
-            <a onClick={() => (window.location.href = '/')}>Buyer</a>
-            <a onClick={() => (window.location.href = '/ProfileSeller')}>
-              Seller
-            </a>
-          </div>
-        </div>
+        <button
+          onClick={() => (window.location.href = '/ProfileSeller')}
+          class="btn btn-primary mb-5"
+        >
+          Switch Account
+        </button>
       </container>
     </div>
   )

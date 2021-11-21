@@ -3,7 +3,7 @@ import ctrl from '../controllers/InCartController'
 
 const routes = Router()
 
-routes.get('/', ctrl.getProductInCart)
+routes.get('/:citizenID', ctrl.getProductInCart)
 routes.post('/', ctrl.addToIncart)
 routes.delete('/', ctrl.deleteInCart)
 routes.patch('/', ctrl.takeToOrder)

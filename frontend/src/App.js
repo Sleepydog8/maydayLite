@@ -4,7 +4,8 @@ import { BrowserRouter, Routes as Switch, Route } from 'react-router-dom'
 import ProfileBuyer from './views/ProfileBuyer'
 import SearchProduct from './views/SearchProduct'
 import ProfileSeller from './views/ProfileSeller'
-
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.js'
 function App() {
   return (
     <div className="App">
