@@ -17,8 +17,18 @@ export const productQueries = {
     return `DELETE from Product P where P.ProductId = '${ProductID}'`
   },
 
-  stockProduct: ({ CitizenID, Brand, Name, Category, Price }) => {
-    return `INSERT INTO Product (CitizenID, Brand, Name, Category, Price, ProductStatus ) VALUES
-    ('${CitizenID}', '${Brand}', '${Name}',' ${Category}', '${Price}', 'A')`
-  },
+  stockProduct: () => {
+    const insertToProduct = ({ CitizenID, Brand, Name, Category, Price }) => {
+      return `INSERT INTO Product (CitizenID, Brand, Name, Category, Price, ProductStatus ) VALUES
+      ('${CitizenID}', '${Brand}', '${Name}',' ${Category}', '${Price}', 'A')`
+    }
+
+    const insertToStock = ({CitizenID, ProductID}) => {
+      return `INSERT INTO Stock (CitizenID, ProductID, StockDateTime) VALUES
+      ('${CitizenID}','${ProductID}',NOW())`
+    }
+
+    return { insertToProduct, insertToStock}
+  }
+
 }

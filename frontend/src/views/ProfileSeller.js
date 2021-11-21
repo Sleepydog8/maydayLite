@@ -39,25 +39,34 @@ function ProfileSeller() {
     showItemsInStock()
   }, [])
   return (
-    <div>
-      <h1> MayDay </h1>
-      <h1> Product List </h1>
-      <label for="ProductName">Product Name :</label>
-      <input type="text" id="ProductName"></input>
+    <div class="container">
+      <div class="d-flex flex-column align-items-start">
+        <h1> MayDay </h1>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="ProductName">Product Name </label>
+          <input type="text" id="ProductName" class="ms-2"></input>
+        </div>
+        <div class="col">
+          <label for="Category">Category </label>
+          <input type="text" id="Category" class="ms-2"></input>
+        </div>
+        <div class="col">
+          <label for="Brand">Brand </label>
+          <input type="text" id="Brand" class="ms-2"></input>
+        </div>
+        <div class="col">
+          <label for="Price">Price </label>
+          <input type="number" id="Price" class="ms-2"></input>
+        </div>
+      </div>
       <br />
-      <label for="Category">Category :</label>
-      <input type="text" id="Category"></input>
-      <br />
-      <label for="Brand">Brand :</label>
-      <input type="text" id="Brand"></input>
-      <br />
-      <label for="Price">Price :</label>
-      <input type="number" id="Price"></input>
-      <br />
-      <button id="addBtn" onClick={stock}>
+      <button class="btn btn-success" onClick={stock}>
         Stock
       </button>
-      <table>
+      <br />
+      <table class="table">
         <thead>
           <tr>
             <th>Product Name</th>
@@ -74,7 +83,7 @@ function ProfileSeller() {
               <td>{item.Price}</td>
               <td>
                 <button
-                  class="deleteBtn"
+                  class="btn btn-outline-secondary"
                   onClick={() => deleteProduct(item.ProductId)}
                 >
                   Delete
@@ -86,7 +95,12 @@ function ProfileSeller() {
 
         <tbody id="stock-ProductList"></tbody>
       </table>
-      <button onClick={() => (window.location.href = '/')}>Back</button>
+      <button
+        onClick={() => (window.location.href = '/')}
+        class="btn btn-primary mb-5"
+      >
+        Switch Account
+      </button>
     </div>
   )
 }
