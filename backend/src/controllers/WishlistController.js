@@ -37,17 +37,52 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
-var connection = (0, typeorm_1.getConnectionManager)().get('default');
-var manager = new typeorm_1.EntityManager(connection);
+var wishlistQueries_1 = require("../queries/wishlistQueries");
 var ctrl = {
-    getSellers: function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var seller;
+    getProductInWishlist: function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+        var connection, manager, body, product;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, manager.query('SELECT * FROM Seller')];
+                case 0:
+                    connection = (0, typeorm_1.getConnectionManager)().get('default');
+                    manager = new typeorm_1.EntityManager(connection);
+                    body = req.body;
+                    return [4 /*yield*/, manager.query(wishlistQueries_1.wishlistQueries.getProductInWishlist(body))];
                 case 1:
-                    seller = _a.sent();
-                    res.json(seller);
+                    product = _a.sent();
+                    res.json(product);
+                    return [2 /*return*/];
+            }
+        });
+    }); },
+    addToWishlist: function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+        var connection, manager, body, product;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    connection = (0, typeorm_1.getConnectionManager)().get('default');
+                    manager = new typeorm_1.EntityManager(connection);
+                    body = req.body;
+                    return [4 /*yield*/, manager.query(wishlistQueries_1.wishlistQueries.addToWishlist(body))];
+                case 1:
+                    product = _a.sent();
+                    res.json(product);
+                    return [2 /*return*/];
+            }
+        });
+    }); },
+    deleteWishlist: function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+        var connection, manager, body, product;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    connection = (0, typeorm_1.getConnectionManager)().get('default');
+                    manager = new typeorm_1.EntityManager(connection);
+                    body = req.body;
+                    return [4 /*yield*/, manager.query(wishlistQueries_1.wishlistQueries.deleteWishlist(body))];
+                case 1:
+                    product = _a.sent();
+                    res.json(product);
                     return [2 /*return*/];
             }
         });
