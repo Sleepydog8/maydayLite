@@ -1,19 +1,13 @@
 export const wishlistQueries = {
-  getProductInWishlist: ({ Category }) => {
-    if (Category === 'ALL') {
-      return `SELECT * FROM Product`
-    } else {
-      return `SELECT * FROM Product WHERE CATEGORY = ${Category}`
-    }
+  getProductInWishlist: ({ CitizenID }) => {
+    return `SELECT P.* FROM product P,add_to_wishlist A WHERE P.productID = A.productID AND A.citizenID = '${CitizenID}'`
   },
 
-  addToWishlist: ({ CitizenId, Brand, Name, Category, Price }) => {
-    return `INSERT INTO Product (CitizenId, Brand, Name, Category, Price, ProductStatus ) VALUES
-      (${CitizenId}, ${Brand}, ${Name}, ${Category}, ${Price}, 'A')`
+  addToWishlist: ({ CitizenID, ProductID }) => {
+    return `INSERT INTO add_to_wishlist (CitizenID, ProductID) VALUES (NOW(), '${CitizenID}', '${ProductID}')`
   },
 
-  deleteWishlist: ({ CitizenId, Brand, Name, Category, Price }) => {
-    return `INSERT INTO Product (CitizenId, Brand, Name, Category, Price, ProductStatus ) VALUES
-      (${CitizenId}, ${Brand}, ${Name}, ${Category}, ${Price}, 'A')`
+  deleteWishlist: ({ ProductID, CitizenID }) => {
+    return `delete from add_to_wishlist A where A.productid = '${ProductID}' and A.citizenid = '${CitizenID}'`
   },
 }
