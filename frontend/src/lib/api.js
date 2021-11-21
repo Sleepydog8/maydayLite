@@ -49,7 +49,7 @@ export const cart = {
 //Order
 export const order = {
   get: axios
-    .get(`http://localhost:3001/orders`, { CitizenID: 1234567890124 })
+    .get(`http://localhost:3001/orders/1234567890124`)
     .then(({ data }) => data),
   checkout: axios
     .put(`http://localhost:3001/orders`, { CitizenID: 1234567890124 })
