@@ -1,5 +1,5 @@
 import * as express from 'express'
-import { createConnection, EntityManager } from 'typeorm'
+import { createConnection } from 'typeorm'
 import Router from './routes'
 
 createConnection().then(() => {
