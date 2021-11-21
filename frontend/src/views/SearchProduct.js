@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-
+import heart from './image/heart.png'
+import shopping_cart from './image/shopping-cart.png'
 var p = [
   {
     ProductId: 1,
@@ -34,24 +35,6 @@ function addToInCart(productId) {
   console.log('ssss')
 }
 
-async function showItemsInProductList() {
-  var table_body = document.getElementById('search-productlist')
-  console.log('table_body')
-  table_body.innerHTML = ''
-  var items = p
-  items.map((item) => {
-    table_body.innerHTML += `
-            <tr id="${item.ProductId}">
-                <td>${item.ProductId}</td>
-                <td>${item.Name}</td>
-                <td>${item.Price}</td>
-                <td><button onclick="addToWishlist('${item.ProductId}')"><img src="image/heart.png" width="20" height="20" ></button></td>
-                <td><button onclick="alert('${item.ProductId}')"><img src="image/shopping-cart.png" width="20" height="20"></button></td>
-            </tr>
-            `
-  })
-}
-
 // Close the dropdown if the user clicks outside of it
 window.onclick = function (event) {
   if (!event.target.matches('.dropbtn')) {
@@ -67,15 +50,29 @@ window.onclick = function (event) {
 }
 
 function SearchProduct() {
-  useEffect(() => {
-    showItemsInProductList()
-  }, [])
+  useEffect(() => {}, [])
   return (
     <div>
-      <h1>MayDay</h1>
-      <h2>Product</h2>
-      <div>
-        <label for="Catagory">Catagory</label>
+      <h1
+        style={{
+          justifyContent: 'left',
+          display: 'flex',
+          marginLeft: '100px',
+          fontSize: '50px',
+        }}
+      >
+        MayDay
+      </h1>
+      <div
+        style={{
+          justifyContent: 'left',
+          flexDirection: 'column',
+        }}
+      >
+        <h2>Product</h2>
+        <label for="Catagory" style={{ marginRight: '7px' }}>
+          Catagory
+        </label>
         <select
           name="Catagory"
           id="Catagory"
@@ -86,36 +83,67 @@ function SearchProduct() {
           <option value="Shoes">Shoes</option>
         </select>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Product Id</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Wishlist</th>
-            <th>Cart</th>
-          </tr>
-          {p.map((item) => (
-            <tr id={item.ProductId}>
-              <td>{item.ProductId}</td>
-              <td>{item.Name}</td>
-              <td>{item.Price}</td>
-              <td>
-                <button onClick={() => addToWishlist(item.ProductId)}>
-                  <img src="image/heart.png" width="20" height="20" />
-                </button>
-              </td>
-              <td>
-                <button onClick={() => addToInCart(item.ProductId)}>
-                  <img src="image/shopping-cart.png" width="20" height="20" />
-                </button>
-              </td>
+      <div
+        style={{
+          justifyContent: 'center',
+          display: 'flex',
+          // flexDirection: 'column',
+          // width: '800px',
+          marginTop: '20px',
+        }}
+      >
+        <table style={{ width: '1000px' }}>
+          <thead>
+            <tr
+              style={{
+                backgroundColor: 'rgb(150,150,150)',
+                color: 'white',
+                height: '30px',
+              }}
+            >
+              <th>Product Id</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Wishlist</th>
+              <th>Cart</th>
             </tr>
-          ))}
-        </thead>
-        <tbody id="search-productlist"></tbody>
-      </table>
-      <button onClick={() => (window.location.href = '/')}>Back</button>
+            {p.map((item) => (
+              <tr id={item.ProductId}>
+                <td>{item.ProductId}</td>
+                <td>{item.Name}</td>
+                <td>{item.Price}</td>
+                <td>
+                  <button
+                    style={{ border: 'None', backgroundColor: 'transparent' }}
+                    onClick={() => addToWishlist(item.ProductId)}
+                  >
+                    <img src={heart} width="25px" height="25px" />
+                  </button>
+                </td>
+                <td>
+                  <button
+                    style={{ border: 'None', backgroundColor: 'transparent' }}
+                    onClick={() => addToInCart(item.ProductId)}
+                  >
+                    <img src={shopping_cart} width="25px" height="25px" />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </thead>
+          <tbody id="search-productlist"></tbody>
+        </table>
+      </div>
+      <button
+        style={{
+          marginTop: '20px',
+          width: '100px',
+          height: '25px',
+        }}
+        onClick={() => (window.location.href = '/')}
+      >
+        Back
+      </button>
     </div>
   )
 }

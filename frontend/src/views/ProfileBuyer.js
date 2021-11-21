@@ -160,7 +160,7 @@ function ProfileBuyer() {
           <br></br>
           <hr></hr>
           <h3>Order</h3>
-          <table class="myTable">
+          <table class="myTable" style={{ border: '1px solid #f00' }}>
             <thead>
               <tr>
                 <th>Product Id</th>
