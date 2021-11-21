@@ -6,16 +6,20 @@ const ctrl = {
   getProduct: async (req: Request, res: Response) => {
     const connection = getConnectionManager().get('default')
     const manager = new EntityManager(connection)
-    const { body } = req
-    const product = await manager.query(productQueries.getProducts(body))
+    const Category = req.params.category
+    const product = await manager.query(
+      productQueries.getProducts({ Category })
+    )
     res.json(product)
   },
 
   getProductInStock: async (req: Request, res: Response) => {
     const connection = getConnectionManager().get('default')
     const manager = new EntityManager(connection)
-    const { body } = req
-    const product = await manager.query(productQueries.getProductInStock(body))
+    const CitizenID = req.params.citizenID
+    const product = await manager.query(
+      productQueries.getProductInStock({ CitizenID })
+    )
     res.json(product)
   },
 

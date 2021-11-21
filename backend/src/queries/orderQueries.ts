@@ -1,7 +1,6 @@
 export const orderQueries = {
   checkout: ({ CitizenID }) => {
-    return `select P.*
-    from ordert O, product P
-    where BuyerID = '${CitizenID}' AND O.orderID = P.orderID`
+    return `UPDATE Ordert set OrderStatus = "P" WHERE BuyerID = citizenID AND OrderID = "1";
+    DELETE FROM IN_CART I where I.CitizenID = '${CitizenID}'`
   },
 }
