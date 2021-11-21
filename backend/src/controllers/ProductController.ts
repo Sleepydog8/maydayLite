@@ -34,12 +34,9 @@ const ctrl = {
   stockProduct: async (req: Request, res: Response) => {
     const connection = getConnectionManager().get('default')
     const manager = new EntityManager(connection)
-    const { CitizenID, Brand, Name, Category, Price } = req.body
-    const {insertToProduct, insertToStock} = productQueries.stockProduct()
-    const insertResult = await manager.query(insertToProduct({CitizenID, Brand, Name, Category, Price}))
-    const ProductID = insertResult.insertId
-    await manager.query(insertToStock({CitizenID, ProductID}))
-    res.json({message: "Stock Product Complete"})
+    const { body } = req
+    const product = await manager.query(productQueries.stockProduct(body))
+    res.json(product)
   },
 }
 
