@@ -1,8 +1,8 @@
 import { Router } from 'express'
 import ctrl from '../controllers/SellerController'
 
-const sellerRouter = Router()
+const routes = Router()
 
-sellerRouter.get('/', ctrl.getSellers)
+routes.get('/', ctrl.getSellers)
 
-export default sellerRouter
+export default routes
