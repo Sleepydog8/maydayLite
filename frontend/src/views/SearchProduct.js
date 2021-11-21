@@ -133,12 +133,8 @@ function SearchProduct() {
         </table>
       </div>
       <button
-        style={{
-          marginTop: '20px',
-          width: '100px',
-          height: '25px',
-        }}
         onClick={() => (window.location.href = '/')}
+        class="btn btn-primary mt-5"
       >
         Back
       </button>

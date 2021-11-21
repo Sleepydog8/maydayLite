@@ -171,7 +171,7 @@ function ProfileBuyer() {
           </button>
           <br></br>
           <h3>Order</h3>
-          <table class="myTable">
+          <table class="table">
             <thead>
               <tr>
                 <th>Product Id</th>
