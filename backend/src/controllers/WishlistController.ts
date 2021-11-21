@@ -6,9 +6,9 @@ const ctrl = {
   getProductInWishlist: async (req: Request, res: Response) => {
     const connection = getConnectionManager().get('default')
     const manager = new EntityManager(connection)
-    const { body } = req
+    const CitizenID = req.params.citizenID
     const product = await manager.query(
-      wishlistQueries.getProductInWishlist(body)
+      wishlistQueries.getProductInWishlist({ CitizenID })
     )
     res.json(product)
   },

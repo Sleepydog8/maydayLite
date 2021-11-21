@@ -6,8 +6,10 @@ const ctrl = {
   getProductInCart: async (req: Request, res: Response) => {
     const connection = getConnectionManager().get('default')
     const manager = new EntityManager(connection)
-    const { body } = req
-    const product = await manager.query(inCartQueries.getProductInCart(body))
+    const CitizenID = req.params.citizenID
+    const product = await manager.query(
+      inCartQueries.getProductInCart({ CitizenID })
+    )
     res.json(product)
   },
 
@@ -30,9 +32,14 @@ const ctrl = {
   takeToOrder: async (req: Request, res: Response) => {
     const connection = getConnectionManager().get('default')
     const manager = new EntityManager(connection)
-    const { body } = req
-    const product = await manager.query(inCartQueries.takeToOrder(body))
-    res.json(product)
+    const { CitizenID } = req.body
+    const { insertToOrder, updateProductSoldPrice, updateProductOrderID } =
+      inCartQueries.takeToOrder()
+    const insertResult = await manager.query(insertToOrder({ CitizenID }))
+    const OrderID = insertResult.insertId
+    await updateProductSoldPrice({ CitizenID })
+    await updateProductOrderID({ CitizenID, OrderID })
+    res.json({ message: 'Take to order complete' })
   },
 }
 
