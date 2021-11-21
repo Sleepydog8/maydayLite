@@ -42,23 +42,32 @@ function ProfileSeller() {
     <div class="container">
       <div class="d-flex flex-column align-items-start">
         <h1> MayDay </h1>
+        <br />
       </div>
       <div class="row">
         <div class="col">
-          <label for="ProductName">Product Name </label>
-          <input type="text" id="ProductName" class="ms-2"></input>
+          <label for="ProductName" class="form-label">
+            Product Name{' '}
+          </label>
+          <input type="text" id="ProductName" class="form-control ms-2"></input>
         </div>
         <div class="col">
-          <label for="Category">Category </label>
-          <input type="text" id="Category" class="ms-2"></input>
+          <label for="Category" class="form-label">
+            Category{' '}
+          </label>
+          <input type="text" id="Category" class="form-control ms-2"></input>
         </div>
         <div class="col">
-          <label for="Brand">Brand </label>
-          <input type="text" id="Brand" class="ms-2"></input>
+          <label for="Brand" class="form-label">
+            Brand{' '}
+          </label>
+          <input type="text" id="Brand" class="form-control ms-2"></input>
         </div>
         <div class="col">
-          <label for="Price">Price </label>
-          <input type="number" id="Price" class="ms-2"></input>
+          <label for="Price" class="form-label">
+            Price{' '}
+          </label>
+          <input type="number" id="Price" class="form-control ms-2"></input>
         </div>
       </div>
       <br />
