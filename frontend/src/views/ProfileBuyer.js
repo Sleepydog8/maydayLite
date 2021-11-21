@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import * as api from '../lib/api'
 
 var wishlist = [
   {
@@ -29,64 +30,71 @@ var cart = [
     Price: 10,
   },
 ]
-var order = []
-
-function myFunction() {
-  document.getElementById('myDropdown').classList.toggle('show')
-}
-
-function addToWishlist(productId) {
-  alert('add to wishlist complete!')
-  console.log('ssss')
-}
-function ssinCart() {
-  alert('in cart complete!')
-  console.log('ssss')
-}
-
-function deleteWishlist(productId) {
-  alert(productId)
-}
-function deleteCart(productId) {
-  console.log(`deleteProduct${productId}'`)
-  alert(productId)
-}
-
-function takeToOrder() {
-  //take product from cart to order
-  alert('order complete!')
-}
-
-function checkout() {
-  alert('checkout!!!')
-}
-
-async function showItemsInWishlist() {}
-async function showItemsInCart() {}
-
-async function showItemsInOrder() {}
-// Close the dropdown if the user clicks outside of it
-
-window.onClick = function (event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName('dropdown-content')
-    var i
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i]
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show')
-      }
-    }
-  }
-}
 
 function ProfileBuyer() {
+  const [cart, setCart] = useState([])
+  const [wishlist, setWishlist] = useState([])
+  const [order, setOrder] = useState([])
   useEffect(() => {
-    showItemsInWishlist()
-    showItemsInCart()
-    showItemsInOrder()
+    getProductInWishlist()
+    getProductInCart()
+    getProductInOrder()
   }, [])
-
+  async function getProductInWishlist() {
+    try {
+      const data = await api.wishlist.get()
+      console.log('wishlist: ', data)
+      setWishlist(data)
+    } catch (error) {
+      console.log('get Product In Wishlist Error')
+    }
+  }
+  async function getProductInCart() {
+    try {
+      const data = await api.cart.get()
+      console.log('inCart: ', data)
+      setCart(data)
+    } catch (error) {
+      console.log('get Product In Cart Error')
+    }
+  }
+  async function getProductInOrder() {
+    try {
+      const data = await api.order.get()
+      console.log('Order: ', data)
+      setOrder(data)
+    } catch (error) {
+      console.log('get Product In Order Error')
+    }
+  }
+  async function deleteCart(ProductID) {
+    try {
+      const data = await api.cart.delete(ProductID)
+    } catch (error) {
+      console.log('delete Cart Error')
+    }
+  }
+  async function deleteWishlist(ProductID) {
+    try {
+      const data = await api.wishlist.delete(ProductID)
+    } catch (error) {
+      console.log('delete Wishlist Error')
+    }
+  }
+  async function takeToOrder() {
+    try {
+      const data = await api.cart.takeToOrder()
+    } catch (error) {
+      console.log('take to order Error')
+    }
+  }
+  async function checkout() {
+    try {
+      const data = await api.order.checkout()
+    } catch (error) {
+      console.log('check out Error')
+    }
+  }
   return (
     <div>
       <container>

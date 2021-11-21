@@ -1,75 +1,38 @@
-import { useEffect } from 'react'
-
-var p = [
-  {
-    ProductId: 1,
-    Name: 'Lady Dior',
-    Price: 20000,
-    Catagory: 'Shirt',
-  },
-  {
-    ProductId: 2,
-    Name: 'LV หลุยส์แท้ 10%',
-    Price: 150000,
-    Category: 'Shirt',
-  },
-  {
-    ProductId: 3,
-    Name: 'Tiew Handsome',
-    Price: 200000,
-    Category: 'Shoes',
-  },
-]
-
-function search(catagory) {
-  alert(catagory)
-}
-
-function addToWishlist(productId) {
-  alert(productId)
-  console.log('ssss')
-}
-function addToInCart(productId) {
-  alert(productId)
-  console.log('ssss')
-}
-
-async function showItemsInProductList() {
-  var table_body = document.getElementById('search-productlist')
-  console.log('table_body')
-  table_body.innerHTML = ''
-  var items = p
-  items.map((item) => {
-    table_body.innerHTML += `
-            <tr id="${item.ProductId}">
-                <td>${item.ProductId}</td>
-                <td>${item.Name}</td>
-                <td>${item.Price}</td>
-                <td><button onclick="addToWishlist('${item.ProductId}')"><img src="image/heart.png" width="20" height="20" ></button></td>
-                <td><button onclick="alert('${item.ProductId}')"><img src="image/shopping-cart.png" width="20" height="20"></button></td>
-            </tr>
-            `
-  })
-}
-
-// Close the dropdown if the user clicks outside of it
-window.onclick = function (event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName('dropdown-content')
-    var i
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i]
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show')
-      }
-    }
-  }
-}
+import { useEffect, useState } from 'react'
+import * as api from '../lib/api'
 
 function SearchProduct() {
+  const [products, setProducts] = useState([])
+
   useEffect(() => {
-    showItemsInProductList()
+    search('ALL')
   }, [])
+
+  async function search(catagory) {
+    try {
+      const data = await api.product.get(catagory)
+      setProducts(data)
+      console.log(data)
+    } catch (error) {
+      console.log('Search Error')
+    }
+  }
+
+  async function addToWishlist(ProductID) {
+    try {
+      const data = await api.wishlist.add(ProductID)
+    } catch (error) {
+      console.log('add to wishlist Error')
+    }
+  }
+  async function addToInCart(ProductID) {
+    try {
+      const data = await api.cart.add(ProductID)
+    } catch (error) {
+      console.log('add to cart Error')
+    }
+  }
+
   return (
     <div>
       <h1>MayDay</h1>
@@ -79,9 +42,10 @@ function SearchProduct() {
         <select
           name="Catagory"
           id="Catagory"
+          defaultValue="ALL"
           onChange={(e) => search(e.target.value)}
         >
-          <option value="All">All</option>
+          <option value="ALL">All</option>
           <option value="Shirt">Shirt</option>
           <option value="Shoes">Shoes</option>
         </select>
@@ -95,7 +59,7 @@ function SearchProduct() {
             <th>Wishlist</th>
             <th>Cart</th>
           </tr>
-          {p.map((item) => (
+          {products.map((item) => (
             <tr id={item.ProductId}>
               <td>{item.ProductId}</td>
               <td>{item.Name}</td>
