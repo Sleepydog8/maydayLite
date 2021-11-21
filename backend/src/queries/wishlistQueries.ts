@@ -4,7 +4,7 @@ export const wishlistQueries = {
   },
 
   addToWishlist: ({ CitizenID, ProductID }) => {
-    return `INSERT INTO add_to_wishlist (CitizenID, ProductID) VALUES (NOW(), '${CitizenID}', '${ProductID}')`
+    return `INSERT INTO add_to_wishlist (AddToWishListDatetime, CitizenID, ProductID) VALUES (NOW(), '${CitizenID}', '${ProductID}')`
   },
 
   deleteWishlist: ({ ProductID, CitizenID }) => {
