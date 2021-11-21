@@ -1,14 +1,26 @@
 import logo from './logo.svg'
 import './App.css'
 import { BrowserRouter, Routes as Switch, Route } from 'react-router-dom'
-import Profile from './views/profile'
+import ProfileBuyer from './views/ProfileBuyer'
+import SearchProduct from './views/SearchProduct'
+import ProfileSeller from './views/ProfileSeller'
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" element={<Profile />}></Route>
+          <Route exact path="/" element={<ProfileBuyer />}></Route>
+          <Route
+            exact
+            path="/search-product"
+            element={<SearchProduct />}
+          ></Route>
+          <Route
+            exact
+            path="/ProfileSeller"
+            element={<ProfileSeller />}
+          ></Route>
         </Switch>
       </BrowserRouter>
     </div>
