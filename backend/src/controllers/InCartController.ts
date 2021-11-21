@@ -6,8 +6,10 @@ const ctrl = {
   getProductInCart: async (req: Request, res: Response) => {
     const connection = getConnectionManager().get('default')
     const manager = new EntityManager(connection)
-    const { body } = req
-    const product = await manager.query(inCartQueries.getProductInCart(body))
+    const CitizenID = req.params.citizenID
+    const product = await manager.query(
+      inCartQueries.getProductInCart({ CitizenID })
+    )
     res.json(product)
   },
 
