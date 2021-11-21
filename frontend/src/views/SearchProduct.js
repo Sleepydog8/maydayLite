@@ -21,36 +21,6 @@ var p = [
   },
 ]
 
-var addtowishlist = [
-  {
-    ProductId: 3,
-    CitizenId: 1,
-    Name: 'Tiew Handsome',
-    Price: 200000,
-  },
-  {
-    ProductId: 2,
-    CitizenId: 1,
-    Name: 'LV หลุยส์แท้ 10%',
-    Price: 150000,
-  },
-]
-
-var cart = [
-  {
-    CitizenId: 1,
-    ProductId: 1,
-    Price: 20000,
-    Name: 'Lady Dior',
-  },
-  {
-    CitizenId: 1,
-    ProductId: 2,
-    Name: 'LV หลุยส์แท้ 10%',
-    Price: 10,
-  },
-]
-
 function search(catagory) {
   alert(catagory)
 }
@@ -59,7 +29,7 @@ function addToWishlist(productId) {
   alert(productId)
   console.log('ssss')
 }
-function inCart(productId) {
+function addToInCart(productId) {
   alert(productId)
   console.log('ssss')
 }
@@ -125,6 +95,23 @@ function SearchProduct() {
             <th>Wishlist</th>
             <th>Cart</th>
           </tr>
+          {p.map((item) => (
+            <tr id={item.ProductId}>
+              <td>{item.ProductId}</td>
+              <td>{item.Name}</td>
+              <td>{item.Price}</td>
+              <td>
+                <button onClick={() => addToWishlist(item.ProductId)}>
+                  <img src="image/heart.png" width="20" height="20" />
+                </button>
+              </td>
+              <td>
+                <button onClick={() => addToInCart(item.ProductId)}>
+                  <img src="image/shopping-cart.png" width="20" height="20" />
+                </button>
+              </td>
+            </tr>
+          ))}
         </thead>
         <tbody id="search-productlist"></tbody>
       </table>

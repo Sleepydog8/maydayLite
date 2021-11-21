@@ -1,27 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
-var p = [
-  {
-    ProductId: 1,
-    Name: 'Lady Dior',
-    Price: 20000,
-    Catagory: 'Shirt',
-  },
-  {
-    ProductId: 2,
-    Name: 'LV หลุยส์แท้ 10%',
-    Price: 150000,
-    Category: 'Shirt',
-  },
-  {
-    ProductId: 3,
-    Name: 'Tiew Handsome',
-    Price: 200000,
-    Category: 'Shoes',
-  },
-]
-
-var addtowishlist = [
+var wishlist = [
   {
     ProductId: 3,
     CitizenId: 1,
@@ -50,6 +29,7 @@ var cart = [
     Price: 10,
   },
 ]
+var order = []
 
 function myFunction() {
   document.getElementById('myDropdown').classList.toggle('show')
@@ -59,7 +39,7 @@ function addToWishlist(productId) {
   alert('add to wishlist complete!')
   console.log('ssss')
 }
-function inCart() {
+function ssinCart() {
   alert('in cart complete!')
   console.log('ssss')
 }
@@ -81,60 +61,13 @@ function checkout() {
   alert('checkout!!!')
 }
 
-function stock() {
-  console.log('stock complete')
-}
+async function showItemsInWishlist() {}
+async function showItemsInCart() {}
 
-async function showItemsInWishlist() {
-  var table_body = document.getElementById('wishlist-productlist')
-  table_body.innerHTML = ''
-  var items = addtowishlist
-  items.map((item) => {
-    table_body.innerHTML += `
-          <tr id="${item.ProductId}">
-              <td>${item.ProductId}</td>
-              <td>${item.Name}</td>
-              <td>${item.Price}</td>
-              <td><button class='deleteBtn' onclick="deleteWishlist('${item.ProductId}')">Delete</button></td>
-          </tr>
-          `
-  })
-}
-async function showItemsInCart() {
-  var table_body = document.getElementById('cart-productlist')
-  console.log('showItemIncart')
-  table_body.innerHTML = ''
-  var items = cart
-  items.map((item) => {
-    table_body.innerHTML += `
-          <tr id="${item.ProductId}">
-              <td>${item.ProductId}</td>
-              <td>${item.Name}</td>
-              <td>${item.Price}</td>
-              <td><button class='deleteBtn' onclick="deleteCart('${item.ProductId}')">Delete</button></td>
-          </tr>
-          `
-  })
-}
-
-async function showItemsInOrder() {
-  var table_body = document.getElementById('order-productlist')
-  console.log('showItemsInOrder')
-  table_body.innerHTML = ''
-  var items = []
-  items.map((item) => {
-    table_body.innerHTML += `
-          <tr id="${item.ProductId}">
-              <td>${item.ProductId}</td>
-              <td>${item.Name}</td>
-              <td>${item.Price}</td>
-              <td><button class='deleteBtn' onclick="deleteCart('${item.ProductId}')">Delete</button></td>
-          </tr>
-          `
-  })
-}
+async function showItemsInOrder() {}
 // Close the dropdown if the user clicks outside of it
-window.onclick = function (event) {
+
+window.onClick = function (event) {
   if (!event.target.matches('.dropbtn')) {
     var dropdowns = document.getElementsByClassName('dropdown-content')
     var i
@@ -153,6 +86,7 @@ function ProfileBuyer() {
     showItemsInCart()
     showItemsInOrder()
   }, [])
+
   return (
     <div>
       <container>
@@ -173,6 +107,21 @@ function ProfileBuyer() {
                 <th>Price</th>
                 <th>Delete</th>
               </tr>
+              {wishlist.map((item) => (
+                <tr id={item.ProductId}>
+                  <td>{item.ProductId}</td>
+                  <td>{item.Name}</td>
+                  <td>{item.Price}</td>
+                  <td>
+                    <button
+                      class="deleteBtn"
+                      onClick={() => deleteWishlist(item.ProductId)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
             </thead>
             <tbody id="wishlist-productlist"></tbody>
           </table>
@@ -187,10 +136,25 @@ function ProfileBuyer() {
                 <th>Price</th>
                 <th>Delete</th>
               </tr>
+              {cart.map((item) => (
+                <tr id={item.ProductId}>
+                  <td>{item.ProductId}</td>
+                  <td>{item.Name}</td>
+                  <td>{item.Price}</td>
+                  <td>
+                    <button
+                      class="deleteBtn"
+                      onClick={() => deleteCart(item.ProductId)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
             </thead>
             <tbody id="cart-productlist"></tbody>
           </table>
-          <button class="confirmBtn" onclick="takeToOrder()">
+          <button class="confirmBtn" onClick={takeToOrder}>
             Take to Order
           </button>
           <br></br>
@@ -204,17 +168,25 @@ function ProfileBuyer() {
                 <th>Price</th>
                 <th>Status</th>
               </tr>
+              {order.map((item) => (
+                <tr id={item.ProductId}>
+                  <td>{item.ProductId}</td>
+                  <td>{item.Name}</td>
+                  <td>{item.Price}</td>
+                  <td>{item.Status}</td>
+                </tr>
+              ))}
             </thead>
             <tbody id="order-productlist"></tbody>
           </table>
-          <button class="confirmBtn" onclick="checkout()">
+          <button class="confirmBtn" onClick={checkout}>
             Check out
           </button>
           <br></br>
         </div>
         <br></br>
         <div class="dropdown">
-          <button onclick="myFunction()" class="dropbtn">
+          <button onClick="myFunction()" class="dropbtn">
             Switch Account
           </button>
           <div id="myDropdown" class="dropdown-content">

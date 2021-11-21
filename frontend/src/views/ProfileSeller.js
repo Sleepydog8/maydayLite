@@ -28,23 +28,11 @@ function stock() {
   console.log(document.getElementById('Price').value)
 }
 
-async function showItemsInStock() {
-  var table_body = document.getElementById('stock-ProductList')
-  console.log('showItemsInStock')
-  table_body.innerHTML = ''
-  var items = productList
-  items.map((item) => {
-    table_body.innerHTML += `
-            <tr id="${item.ProductName}">
-                <td>${item.ProductName}</td>
-                <td>${item.Category}</td>
-                <td>${item.Brand}</td>
-                <td>${item.Price}</td>
-                <td><button class='deleteBtn' onClick="deleteCart('${item.ProductId}')">Delete</button></td>
-            </tr>
-            `
-  })
+function deleteProduct(productId) {
+  console.log(productId)
 }
+
+async function showItemsInStock() {}
 
 function ProfileSeller() {
   useEffect(() => {
@@ -78,6 +66,22 @@ function ProfileSeller() {
             <th>Price</th>
             <th>Delete</th>
           </tr>
+          {productList.map((item) => (
+            <tr id={item.ProductName}>
+              <td>{item.ProductName}</td>
+              <td>{item.Category}</td>
+              <td>{item.Brand}</td>
+              <td>{item.Price}</td>
+              <td>
+                <button
+                  class="deleteBtn"
+                  onClick={() => deleteProduct(item.ProductId)}
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
         </thead>
 
         <tbody id="stock-ProductList"></tbody>
