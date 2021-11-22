@@ -103,13 +103,6 @@ function ProfileBuyer() {
           <h1>MayDay</h1>
           <div>
             <button
-              onClick={() => (window.location.href = '/Ad')}
-              class="btn btn-light me-2"
-              style={{ backgroundColor: '#E6DDC4', color: 'black' }}
-            >
-              AdsBuyer
-            </button>
-            <button
               onClick={() => (window.location.href = '/search-product')}
               class="btn btn-light"
               style={{ backgroundColor: '#181D31', color: 'white' }}

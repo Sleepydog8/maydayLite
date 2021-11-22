@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-import * as api from '../lib/api'
+import { useEffect } from 'react'
 
 var productList = [
   {
@@ -22,42 +21,23 @@ var productList = [
   },
 ]
 
-function ProfileSeller() {
-  const [productInStock, setProductInStock] = useState([])
-  useEffect(() => {
-    getInStock()
-  }, [])
-  async function getInStock() {
-    try {
-      const data = await api.product.getInStock()
-      setProductInStock(data)
-    } catch (error) {
-      console.log('get InStock error')
-    }
-  }
-  async function stock() {
-    var newProduct = {
-      CitizenID: 1234567890121,
-      ProductName: document.getElementById('ProductName').value,
-      Catagory: document.getElementById('Category').value,
-      Brand: document.getElementById('Brand').value,
-      Price: document.getElementById('Price').value,
-    }
-    try {
-      const data = await api.product.stock(newProduct)
-      console.log(data)
-    } catch (error) {
-      console.log('stock product error')
-    }
-  }
+function stock() {
+  console.log(document.getElementById('ProductName').value)
+  console.log(document.getElementById('Category').value)
+  console.log(document.getElementById('Brand').value)
+  console.log(document.getElementById('Price').value)
+}
 
-  async function deleteProduct(ProductID) {
-    try {
-      const data = await api.product.delete(ProductID)
-    } catch (error) {
-      console.log('delete product error')
-    }
-  }
+function deleteProduct(productId) {
+  console.log(productId)
+}
+
+async function showItemsInStock() {}
+
+function ProfileSeller() {
+  useEffect(() => {
+    showItemsInStock()
+  }, [])
   return (
     <div class="container">
       <div class="d-flex flex-column align-items-start">
