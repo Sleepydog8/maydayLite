@@ -27,6 +27,7 @@ function ProfileSeller() {
       console.log(newProduct)
       const data = await api.product.stock(newProduct)
       alert('Stock Complete')
+      getInStock()
     } catch (error) {
       console.log('stock product error')
     }
@@ -35,10 +36,12 @@ function ProfileSeller() {
   async function deleteProduct(ProductID) {
     try {
       const data = await api.product.delete(ProductID)
+      getInStock()
     } catch (error) {
       console.log('delete product error')
     }
   }
+
   return (
     <div class="container">
       <div class="d-flex flex-column align-items-start">
@@ -76,9 +79,11 @@ function ProfileSeller() {
         Stock
       </button>
       <br />
+      <br />
       <table class="table table-hover">
         <thead>
           <tr>
+            <th>Product ID</th>
             <th>Product Name</th>
             <th>Category</th>
             <th>Brand</th>
@@ -89,7 +94,8 @@ function ProfileSeller() {
 
         <tbody id="stock-ProductList">
           {productInStock.map((item) => (
-            <tr id={item.Name}>
+            <tr id={item.ProductID}>
+              <td>{item.ProductID}</td>
               <td>{item.Name}</td>
               <td>{item.Category}</td>
               <td>{item.Brand}</td>

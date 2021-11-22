@@ -9,7 +9,7 @@ INSERT INTO SELLER VALUES
 ('1234567890122', 'shopname2');
 
 INSERT INTO DADDRESS VALUES
-('1','1234567890123','Firstnameja3','Lastnameja3','0123456783','addressno1', 'Tiewclub Road','Tiew handsome District','EiEi Sub-district','Kon Lhor Province','99691','ฝากให้อาหารแมวด้วยค้าบ');
+    ('1','1234567890124','Firstnameja3','Lastnameja3','0123456783','addressno1', 'Tiewclub Road','Tiew handsome District','EiEi Sub-district','Kon Lhor Province','99691','ฝากให้อาหารแมวด้วยค้าบ');
 
 INSERT INTO sys_account VALUE
 ('9999999990','tiewclub','Mayday Bank'),

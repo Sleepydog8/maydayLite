@@ -40,6 +40,13 @@ function ProfileBuyer() {
     getProductInCart()
     getProductInOrder()
   }, [])
+
+  function fetchData() {
+    getProductInWishlist()
+    getProductInCart()
+    getProductInOrder()
+  }
+
   async function getProductInWishlist() {
     try {
       const data = await api.wishlist.get()
@@ -76,6 +83,7 @@ function ProfileBuyer() {
     try {
       const data = await api.cart.delete(ProductID)
       console.log('delete cart', data)
+      fetchData()
     } catch (error) {
       console.log('delete Cart Error')
     }
@@ -85,6 +93,7 @@ function ProfileBuyer() {
       //console.log(ProductID)
       const data = await api.wishlist.delete(ProductID)
       console.log('delete wishlist', data)
+      fetchData()
     } catch (error) {
       console.log('delete Wishlist Error')
     }
@@ -92,6 +101,7 @@ function ProfileBuyer() {
   async function takeToOrder() {
     try {
       const data = await api.cart.takeToOrder()
+      fetchData()
     } catch (error) {
       console.log('take to order Error')
     }
@@ -99,10 +109,25 @@ function ProfileBuyer() {
   async function checkout() {
     try {
       const data = await api.order.checkout()
+      fetchData()
     } catch (error) {
       console.log('check out Error')
     }
   }
+
+  const OrderStatusENUM = {
+    I: 'In Process',
+    O: 'Ordered',
+    X: 'Rejected',
+    P: 'Placed',
+    S: 'Shipping',
+    R: 'Received',
+    C: 'Complete',
+    R: 'Reviewed',
+    U: 'Returned',
+    K: 'Checking',
+  }
+
   return (
     <div class="container">
       <container>
@@ -201,7 +226,7 @@ function ProfileBuyer() {
                   <td>{item.ProductID}</td>
                   <td>{item.Name}</td>
                   <td>{item.Price}</td>
-                  <td>{item.Status}</td>
+                  <td>{OrderStatusENUM[item.OrderStatus]}</td>
                 </tr>
               ))}
             </tbody>

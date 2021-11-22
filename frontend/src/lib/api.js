@@ -16,10 +16,7 @@ export const product = {
       .then(({ data }) => data),
   delete: (ProductID) =>
     axios
-      .delete(`http://localhost:3001/products/`, {
-        ProductID,
-        CitizenID: 1234567890121,
-      })
+      .delete(`http://localhost:3001/products/${ProductID}`, null)
       .then(({ data }) => data),
 }
 
@@ -39,10 +36,7 @@ export const cart = {
       .then(({ data }) => data),
   delete: (ProductID) =>
     axios
-      .delete(`http://localhost:3001/inCarts`, {
-        ProductID,
-        CitizenID: '1234567890124',
-      })
+      .delete(`http://localhost:3001/inCarts/${ProductID}/1234567890124`)
       .then(({ data }) => data),
   takeToOrder: () =>
     axios
@@ -80,10 +74,7 @@ export const wishlist = {
       .then(({ data }) => data),
   delete: (ProductID) =>
     axios
-      .delete(`http://localhost:3001/wishlists`, {
-        ProductID,
-        CitizenID: '1234567890124',
-      })
+      .delete(`http://localhost:3001/wishlists/${ProductID}/1234567890124`)
       .then(({ data }) => data),
 }
 

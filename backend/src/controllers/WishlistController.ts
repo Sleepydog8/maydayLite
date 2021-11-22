@@ -24,8 +24,11 @@ const ctrl = {
   deleteWishlist: async (req: Request, res: Response) => {
     const connection = getConnectionManager().get('default')
     const manager = new EntityManager(connection)
-    const { body } = req
-    const product = await manager.query(wishlistQueries.deleteWishlist(body))
+    const ProductID = req.params.productID
+    const CitizenID = req.params.citizenID
+    const product = await manager.query(
+      wishlistQueries.deleteWishlist({ ProductID, CitizenID })
+    )
     res.json(product)
   },
 }
