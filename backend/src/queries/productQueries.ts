@@ -1,9 +1,9 @@
 export const productQueries = {
   getProducts: ({ Category }) => {
     if (Category === 'All') {
-      return `SELECT * FROM Product`
+      return `SELECT * FROM Product WHERE ProductStatus = 'A'`
     } else {
-      return `SELECT * FROM Product WHERE CATEGORY = '${Category}'`
+      return `SELECT * FROM Product WHERE CATEGORY = '${Category}' AND ProductStatus = 'A'`
     }
   },
 
@@ -21,12 +21,12 @@ export const productQueries = {
     const insertToProduct = ({ CitizenID, Brand, Name, Category, Price }) => {
       return `INSERT INTO Product (CitizenID, Brand, Name, Category, Price, ProductStatus ) VALUES
       ('${CitizenID}', '${Brand}', '${Name}',' ${Category}', '${Price}', 'A')`
-   }
-    const insertToStock = ({CitizenID, ProductID}) => {
+    }
+    const insertToStock = ({ CitizenID, ProductID }) => {
       return `INSERT INTO Stock (CitizenID, ProductID, StockDateTime) VALUES
       ('${CitizenID}', '${ProductID}', NOW())`
     }
-    
-    return { insertToProduct, insertToStock}
-  }
+
+    return { insertToProduct, insertToStock }
+  },
 }
