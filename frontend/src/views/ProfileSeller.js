@@ -104,16 +104,10 @@ function ProfileSeller() {
             <th>Price</th>
             <th>Delete</th>
           </tr>
-<<<<<<< HEAD
         </thead>
 
         <tbody id="stock-ProductList">
           {productList.map((item) => (
-||||||| 775deaa
-          {productList.map((item) => (
-=======
-          {productInStock.map((item) => (
->>>>>>> d6c3d53067a93980d78e8721df5db1d1c6adda4f
             <tr id={item.ProductName}>
               <td>{item.ProductName}</td>
               <td>{item.Category}</td>
