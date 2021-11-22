@@ -1,6 +1,36 @@
 import { useEffect, useState } from 'react'
 import * as api from '../lib/api'
 
+var wishlist = [
+  {
+    ProductId: 3,
+    CitizenId: 1,
+    Name: 'Tiew Handsome',
+    Price: 200000,
+  },
+  {
+    ProductId: 2,
+    CitizenId: 1,
+    Name: 'LV หลุยส์แท้ 10%',
+    Price: 150000,
+  },
+]
+
+var cart = [
+  {
+    CitizenId: 1,
+    ProductId: 1,
+    Price: 20000,
+    Name: 'Lady Dior',
+  },
+  {
+    CitizenId: 1,
+    ProductId: 2,
+    Name: 'LV หลุยส์แท้ 10%',
+    Price: 10,
+  },
+]
+
 function ProfileBuyer() {
   const [cart, setCart] = useState([])
   const [wishlist, setWishlist] = useState([])

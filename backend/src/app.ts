@@ -5,11 +5,9 @@ import * as cors from 'cors'
 import * as dotenv from 'dotenv'
 
 dotenv.config()
+const app = express()
 
 createConnection().then(() => {
-
-  const app = express()
-
   const corsOptions = {
     origin: 'http://localhost:3000',
     credentials: true,

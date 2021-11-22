@@ -1,10 +1,42 @@
-import { useEffect, useState } from 'react'
-import * as api from '../lib/api'
+import { useEffect } from 'react'
+
+var productList = [
+  {
+    ProductName: 'LV แม่เจ้า ของจริงนี่ ดูต่าเปล่าดูเหมือนของจริงมาก',
+    Category: 'Shirt',
+    Brand: 'LV',
+    Price: 300000,
+  },
+  {
+    ProductName: 'Deor ของแท้แน่นอน ไม่แท้เอาปากกามาวงค่ะ',
+    Category: 'Shoes',
+    Brand: 'Deor',
+    Price: 120000,
+  },
+  {
+    ProductName: 'ไหนกี้',
+    Category: 'Shoes',
+    Brand: 'NIke',
+    Price: 120000,
+  },
+]
+
+function stock() {
+  console.log(document.getElementById('ProductName').value)
+  console.log(document.getElementById('Category').value)
+  console.log(document.getElementById('Brand').value)
+  console.log(document.getElementById('Price').value)
+}
+
+function deleteProduct(productId) {
+  console.log(productId)
+}
+
+async function showItemsInStock() {}
 
 function ProfileSeller() {
-  const [productInStock, setProductInStock] = useState([])
   useEffect(() => {
-    getInStock()
+    showItemsInStock()
   }, [])
   async function getInStock() {
     try {
