@@ -23,26 +23,6 @@ var adBuyers = [
     ],
   },
 ]
-var productList = [
-  {
-    ProductName: 'LV แม่เจ้า ของจริงนี่ ดูต่าเปล่าดูเหมือนของจริงมาก',
-    Category: 'Shirt',
-    Brand: 'LV',
-    Price: 300000,
-  },
-  {
-    ProductName: 'Deor ของแท้แน่นอน ไม่แท้เอาปากกามาวงค่ะ',
-    Category: 'Shoes',
-    Brand: 'Deor',
-    Price: 120000,
-  },
-  {
-    ProductName: 'ไหนกี้',
-    Category: 'Shoes',
-    Brand: 'NIke',
-    Price: 120000,
-  },
-]
 function SearchProduct() {
   const [products, setProducts] = useState([])
   const [adsList, setAds] = useState([])
