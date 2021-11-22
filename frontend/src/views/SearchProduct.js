@@ -1,39 +1,7 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import * as api from '../lib/api'
 import heart from './image/heart.png'
 import shopping_cart from './image/shopping-cart.png'
-var p = [
-  {
-    ProductId: 1,
-    Name: 'Lady Dior',
-    Price: 20000,
-    Catagory: 'Shirt',
-  },
-  {
-    ProductId: 2,
-    Name: 'LV หลุยส์แท้ 10%',
-    Price: 150000,
-    Category: 'Shirt',
-  },
-  {
-    ProductId: 3,
-    Name: 'Tiew Handsome',
-    Price: 200000,
-    Category: 'Shoes',
-  },
-]
-
-function search(catagory) {
-  alert(catagory)
-}
-
-function addToWishlist(productId) {
-  alert(productId)
-  console.log('ssss')
-}
-function addToInCart(productId) {
-  alert(productId)
-  console.log('ssss')
-}
 
 // Close the dropdown if the user clicks outside of it
 window.onclick = function (event) {
@@ -50,7 +18,36 @@ window.onclick = function (event) {
 }
 
 function SearchProduct() {
-  useEffect(() => {}, [])
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    search('ALL')
+  }, [])
+
+  async function search(catagory) {
+    try {
+      const data = await api.product.get(catagory)
+      setProducts(data)
+      console.log(data)
+    } catch (error) {
+      console.log('Search Error')
+    }
+  }
+
+  async function addToWishlist(ProductID) {
+    try {
+      const data = await api.wishlist.add(ProductID)
+    } catch (error) {
+      console.log('add to wishlist Error')
+    }
+  }
+  async function addToInCart(ProductID) {
+    try {
+      const data = await api.cart.add(ProductID)
+    } catch (error) {
+      console.log('add to cart Error')
+    }
+  }
   return (
     <div>
       <h1
@@ -76,9 +73,10 @@ function SearchProduct() {
         <select
           name="Catagory"
           id="Catagory"
+          defaultValue="ALL"
           onChange={(e) => search(e.target.value)}
         >
-          <option value="All">All</option>
+          <option value="ALL">All</option>
           <option value="Shirt">Shirt</option>
           <option value="Shoes">Shoes</option>
         </select>
@@ -107,7 +105,7 @@ function SearchProduct() {
               <th>Wishlist</th>
               <th>Cart</th>
             </tr>
-            {p.map((item) => (
+            {products.map((item) => (
               <tr id={item.ProductId}>
                 <td>{item.ProductId}</td>
                 <td>{item.Name}</td>
