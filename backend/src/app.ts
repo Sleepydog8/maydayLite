@@ -2,8 +2,12 @@ import * as express from 'express'
 import { createConnection } from 'typeorm'
 import Router from './routes'
 import * as cors from 'cors'
+import * as dotenv from 'dotenv'
+
+dotenv.config()
 
 createConnection().then(() => {
+
   const app = express()
 
   const corsOptions = {

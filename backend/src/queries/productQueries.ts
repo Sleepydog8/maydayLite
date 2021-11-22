@@ -1,9 +1,9 @@
 export const productQueries = {
   getProducts: ({ Category }) => {
     if (Category === 'All') {
-      return `SELECT * FROM Product`
+      return `SELECT * FROM Product WHERE ProductStatus = 'A'`
     } else {
-      return `SELECT * FROM Product WHERE CATEGORY = '${Category}'`
+      return `SELECT * FROM Product WHERE CATEGORY = '${Category}' and ProductStatus = 'A'`
     }
   },
 

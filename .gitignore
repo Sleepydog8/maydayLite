@@ -4,3 +4,8 @@
 node_modules/
 
 backend/src/**/*.js
+
+.env
+package-lock.json
+yarn.lock
+yarn-error.log
