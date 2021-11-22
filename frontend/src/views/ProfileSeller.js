@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-import * as api from '../lib/api'
+import { useEffect } from 'react'
 
 var productList = [
   {
@@ -22,10 +21,22 @@ var productList = [
   },
 ]
 
+function stock() {
+  console.log(document.getElementById('ProductName').value)
+  console.log(document.getElementById('Category').value)
+  console.log(document.getElementById('Brand').value)
+  console.log(document.getElementById('Price').value)
+}
+
+function deleteProduct(productId) {
+  console.log(productId)
+}
+
+async function showItemsInStock() {}
+
 function ProfileSeller() {
-  const [productInStock, setProductInStock] = useState([])
   useEffect(() => {
-    getInStock()
+    showItemsInStock()
   }, [])
   async function getInStock() {
     try {
@@ -95,7 +106,7 @@ function ProfileSeller() {
         Stock
       </button>
       <br />
-      <table class="table">
+      <table class="table table-hover">
         <thead>
           <tr>
             <th>Product Name</th>
@@ -104,7 +115,10 @@ function ProfileSeller() {
             <th>Price</th>
             <th>Delete</th>
           </tr>
-          {productInStock.map((item) => (
+        </thead>
+
+        <tbody id="stock-ProductList">
+          {productList.map((item) => (
             <tr id={item.ProductName}>
               <td>{item.ProductName}</td>
               <td>{item.Category}</td>
@@ -120,9 +134,7 @@ function ProfileSeller() {
               </td>
             </tr>
           ))}
-        </thead>
-
-        <tbody id="stock-ProductList"></tbody>
+        </tbody>
       </table>
       <button
         onClick={() => (window.location.href = '/')}
