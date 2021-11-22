@@ -38,27 +38,67 @@ function ProfileSeller() {
   useEffect(() => {
     showItemsInStock()
   }, [])
+  async function getInStock() {
+    try {
+      const data = await api.product.getInStock()
+      setProductInStock(data)
+    } catch (error) {
+      console.log('get InStock error')
+    }
+  }
+  async function stock() {
+    var newProduct = {
+      CitizenID: '1234567890121',
+      ProductName: document.getElementById('ProductName').value,
+      Category: document.getElementById('Category').value,
+      Brand: document.getElementById('Brand').value,
+      Price: document.getElementById('Price').value,
+    }
+    try {
+      const data = await api.product.stock(newProduct)
+      console.log(data)
+    } catch (error) {
+      console.log('stock product error')
+    }
+  }
+
+  async function deleteProduct(ProductID) {
+    try {
+      const data = await api.product.delete(ProductID)
+    } catch (error) {
+      console.log('delete product error')
+    }
+  }
   return (
     <div class="container">
       <div class="d-flex flex-column align-items-start">
         <h1> MayDay </h1>
+        <br />
       </div>
       <div class="row">
         <div class="col">
-          <label for="ProductName">Product Name </label>
-          <input type="text" id="ProductName" class="ms-2"></input>
+          <label for="ProductName" class="form-label">
+            Product Name{' '}
+          </label>
+          <input type="text" id="ProductName" class="form-control ms-2"></input>
         </div>
         <div class="col">
-          <label for="Category">Category </label>
-          <input type="text" id="Category" class="ms-2"></input>
+          <label for="Category" class="form-label">
+            Category{' '}
+          </label>
+          <input type="text" id="Category" class="form-control ms-2"></input>
         </div>
         <div class="col">
-          <label for="Brand">Brand </label>
-          <input type="text" id="Brand" class="ms-2"></input>
+          <label for="Brand" class="form-label">
+            Brand{' '}
+          </label>
+          <input type="text" id="Brand" class="form-control ms-2"></input>
         </div>
         <div class="col">
-          <label for="Price">Price </label>
-          <input type="number" id="Price" class="ms-2"></input>
+          <label for="Price" class="form-label">
+            Price{' '}
+          </label>
+          <input type="number" id="Price" class="form-control ms-2"></input>
         </div>
       </div>
       <br />
@@ -66,7 +106,7 @@ function ProfileSeller() {
         Stock
       </button>
       <br />
-      <table class="table">
+      <table class="table table-hover">
         <thead>
           <tr>
             <th>Product Name</th>
@@ -75,6 +115,9 @@ function ProfileSeller() {
             <th>Price</th>
             <th>Delete</th>
           </tr>
+        </thead>
+
+        <tbody id="stock-ProductList">
           {productList.map((item) => (
             <tr id={item.ProductName}>
               <td>{item.ProductName}</td>
@@ -91,9 +134,7 @@ function ProfileSeller() {
               </td>
             </tr>
           ))}
-        </thead>
-
-        <tbody id="stock-ProductList"></tbody>
+        </tbody>
       </table>
       <button
         onClick={() => (window.location.href = '/')}
