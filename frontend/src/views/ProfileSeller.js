@@ -75,7 +75,7 @@ function ProfileSeller() {
         Stock
       </button>
       <br />
-      <table class="table">
+      <table class="table table-hover">
         <thead>
           <tr>
             <th>Product Name</th>
@@ -84,6 +84,9 @@ function ProfileSeller() {
             <th>Price</th>
             <th>Delete</th>
           </tr>
+        </thead>
+
+        <tbody id="stock-ProductList">
           {productList.map((item) => (
             <tr id={item.ProductName}>
               <td>{item.ProductName}</td>
@@ -100,9 +103,7 @@ function ProfileSeller() {
               </td>
             </tr>
           ))}
-        </thead>
-
-        <tbody id="stock-ProductList"></tbody>
+        </tbody>
       </table>
       <button
         onClick={() => (window.location.href = '/')}
