@@ -37,8 +37,8 @@ const ctrl = {
       inCartQueries.takeToOrder()
     const insertResult = await manager.query(insertToOrder({ CitizenID }))
     const OrderID = insertResult.insertId
-    await updateProductSoldPrice({ CitizenID })
-    await updateProductOrderID({ CitizenID, OrderID })
+    await manager.query(updateProductSoldPrice({ CitizenID }))
+    await manager.query(updateProductOrderID({ CitizenID, OrderID }))
     res.json({ message: 'Take to order complete' })
   },
 }
