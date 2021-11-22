@@ -1,7 +1,7 @@
 export const orderQueries = {
   checkout: () => {
     const updateOrder = ({CitizenID}) => {
-      return `UPDATE Ordert set OrderStatus = "P" WHERE BuyerID = '${CitizenID}' AND Orderstatus = 'I'`
+      return `UPDATE Ordert set OrderStatus = "O" WHERE BuyerID = '${CitizenID}' AND Orderstatus = 'I'`
     }
 
     const deleteInCart = ({CitizenID}) => {
