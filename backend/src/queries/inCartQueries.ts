@@ -4,7 +4,7 @@ export const inCartQueries = {
   },
 
   addToIncart: ({ CitizenID, ProductID, Price }) => {
-    return `INSERT INTO in_cart (CitizenID, ProductID, Price) VALUES ('${CitizenID}', '${ProductID}', '${Price}', NOW())`
+    return `INSERT INTO in_cart (CitizenID, ProductID, Price, DateTime) VALUES ('${CitizenID}', '${ProductID}', '${Price}', NOW())`
   },
 
   deleteInCart: ({ CitizenID, ProductID }) => {
@@ -13,8 +13,8 @@ export const inCartQueries = {
 
   takeToOrder: () => {
     const insertToOrder = ({ CitizenID }) => {
-      return `INSERT INTO ordert (CitizenID, sys_account, DADDRESS, Price, OrderStatus, OrderDateTime ) 
-    VALUES( '${CitizenID}', '9999999990', '1', select SUM(IC.price) from IN_CART IC Where IC.citizenID = '${CitizenID}' , "I", NOW())`
+      return `INSERT INTO ordert (BuyerID, SysAccountNo, DAddressID, Price, OrderStatus, OrderDateTime ) VALUES 
+      ( '${CitizenID}', '9999999990', '1', (select SUM(IC.price) from IN_CART IC Where IC.citizenID = '${CitizenID}') , "I", NOW())`
     }
 
     const updateProductSoldPrice = ({ CitizenID }) => {

@@ -6,8 +6,10 @@ const ctrl = {
   checkout: async (req: Request, res: Response) => {
     const connection = getConnectionManager().get('default')
     const manager = new EntityManager(connection)
-    const { body } = req
-    const product = await manager.query(orderQueries.checkout(body))
+    const { CitizenID } = req.body
+    const {updateOrder, deleteInCart} = orderQueries.checkout()
+    const product = await manager.query(updateOrder({CitizenID}))
+    await manager.query(deleteInCart({CitizenID}))
     res.json(product)
   },
 }
