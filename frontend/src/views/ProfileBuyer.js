@@ -178,7 +178,10 @@ function ProfileBuyer() {
               ))}
             </tbody>
           </table>
-          <button class="btn btn-success mt-3 mb-3" onClick={takeToOrder}>
+          <button
+            class="btn btn-success mt-3 mb-3"
+            onClick={() => takeToOrder()}
+          >
             Take to Order
           </button>
           <br></br>
@@ -203,7 +206,7 @@ function ProfileBuyer() {
               ))}
             </tbody>
           </table>
-          <button class="btn btn-success" onClick={checkout}>
+          <button class="btn btn-success" onClick={() => checkout()}>
             Check out
           </button>
           <br></br>

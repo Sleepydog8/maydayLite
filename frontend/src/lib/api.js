@@ -44,9 +44,10 @@ export const cart = {
         CitizenID: '1234567890124',
       })
       .then(({ data }) => data),
-  takeToOrder: axios
-    .patch(`http://localhost:3001/inCarts`, { CitizenID: '1234567890124' })
-    .then(({ data }) => data),
+  takeToOrder: () =>
+    axios
+      .patch(`http://localhost:3001/inCarts`, { CitizenID: '1234567890124' })
+      .then(({ data }) => data),
 }
 
 //Order
@@ -55,9 +56,10 @@ export const order = {
     axios
       .get(`http://localhost:3001/orders/1234567890124`, null)
       .then(({ data }) => data),
-  checkout: axios
-    .put(`http://localhost:3001/orders`, { CitizenID: '1234567890124' })
-    .then(({ data }) => data),
+  checkout: () =>
+    axios
+      .put(`http://localhost:3001/orders`, { CitizenID: '1234567890124' })
+      .then(({ data }) => data),
 }
 
 //Wishlist
@@ -83,6 +85,11 @@ export const wishlist = {
         CitizenID: '1234567890124',
       })
       .then(({ data }) => data),
+}
+
+export const ads = {
+  get: () =>
+    axios.get(`http://localhost:3001/mongo/`, null).then(({ data }) => data),
 }
 /*
 routes.get('/category/:category', ctrl.getProduct)

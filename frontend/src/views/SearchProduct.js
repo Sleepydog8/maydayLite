@@ -77,9 +77,9 @@ function SearchProduct() {
       console.log('add to cart Error')
     }
   }
-  function getAds() {
+  async function getAds() {
     try {
-      const data = adBuyers[0].Ads
+      const data = await api.ads.get()
       setAds(data)
     } catch (error) {
       console.log('get ads error')
@@ -191,10 +191,14 @@ function SearchProduct() {
             </tr>
           </thead>
           <tbody id="adlist">
-            {adsList.map((item) => (
-              <tr id={item.AdsID}>
+            {adsList.map((item, index) => (
+              <tr id={`ads${index}`}>
                 <td>
-                  <img src={item.Content} height="300px"></img>
+                  <img
+                    src={item.content}
+                    height="300px"
+                    alt={`adsImage${index}`}
+                  ></img>
                 </td>
               </tr>
             ))}
