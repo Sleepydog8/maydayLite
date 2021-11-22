@@ -6,9 +6,14 @@ import * as cors from 'cors'
 createConnection().then(() => {
   const app = express()
 
+  const corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true,
+  }
+
+  app.use(cors(corsOptions))
   app.use(express.json())
   app.use('/', Router)
-  app.use(cors())
 
   // start express server
   app.listen(3001)

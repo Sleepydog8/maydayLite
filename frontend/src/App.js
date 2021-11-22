@@ -6,7 +6,11 @@ import SearchProduct from './views/SearchProduct'
 import ProfileSeller from './views/ProfileSeller'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.js'
+import { product } from './lib/api'
 function App() {
+  product.get('All').then((item) => {
+    console.log(item)
+  })
   return (
     <div className="App">
       <BrowserRouter>

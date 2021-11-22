@@ -2,9 +2,9 @@ import axios from 'axios'
 
 //Product
 export const product = {
-  get: (catagory) =>
+  get: (category) =>
     axios
-      .get(`http://localhost:3001/products/category/${catagory}`)
+      .get(`http://localhost:3001/products/category/${category}`)
       .then(({ data }) => data),
   stock: (newProduct) =>
     axios
@@ -31,18 +31,18 @@ export const cart = {
     axios
       .post(`http://localhost:3001/inCarts`, {
         ProductID,
-        CitizenID: 1234567890124,
+        CitizenID: '1234567890124',
       })
       .then(({ data }) => data),
   delete: (ProductID) =>
     axios
       .delete(`http://localhost:3001/inCarts`, {
         ProductID,
-        CitizenID: 1234567890124,
+        CitizenID: '1234567890124',
       })
       .then(({ data }) => data),
   takeToOrder: axios
-    .patch(`http://localhost:3001/inCarts`, { CitizenID: 1234567890124 })
+    .patch(`http://localhost:3001/inCarts`, { CitizenID: '1234567890124' })
     .then(({ data }) => data),
 }
 
@@ -52,7 +52,7 @@ export const order = {
     .get(`http://localhost:3001/orders/1234567890124`)
     .then(({ data }) => data),
   checkout: axios
-    .put(`http://localhost:3001/orders`, { CitizenID: 1234567890124 })
+    .put(`http://localhost:3001/orders`, { CitizenID: '1234567890124' })
     .then(({ data }) => data),
 }
 
@@ -65,14 +65,14 @@ export const wishlist = {
     axios
       .post(`http://localhost:3001/wishlists`, {
         ProductID,
-        CitizenID: 1234567890124,
+        CitizenID: '1234567890124',
       })
       .then(({ data }) => data),
   delete: (ProductID) =>
     axios
       .delete(`http://localhost:3001/wishlists`, {
         ProductID,
-        CitizenID: 1234567890124,
+        CitizenID: '1234567890124',
       })
       .then(({ data }) => data),
 }

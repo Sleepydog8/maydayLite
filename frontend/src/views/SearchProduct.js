@@ -21,12 +21,12 @@ function SearchProduct() {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-    search('ALL')
+    search('All')
   }, [])
 
-  async function search(catagory) {
+  async function search(category) {
     try {
-      const data = await api.product.get(catagory)
+      const data = await api.product.get(category)
       setProducts(data)
       console.log(data)
     } catch (error) {
@@ -37,6 +37,7 @@ function SearchProduct() {
   async function addToWishlist(ProductID) {
     try {
       const data = await api.wishlist.add(ProductID)
+      alert('add to wish list complete')
     } catch (error) {
       console.log('add to wishlist Error')
     }
@@ -44,6 +45,7 @@ function SearchProduct() {
   async function addToInCart(ProductID) {
     try {
       const data = await api.cart.add(ProductID)
+      alert('add to cart complete')
     } catch (error) {
       console.log('add to cart Error')
     }
@@ -67,16 +69,16 @@ function SearchProduct() {
         }}
       >
         <h2>Product</h2>
-        <label for="Catagory" style={{ marginRight: '7px' }}>
-          Catagory
+        <label for="Category" style={{ marginRight: '7px' }}>
+          Category
         </label>
         <select
-          name="Catagory"
-          id="Catagory"
+          name="Category"
+          id="Category"
           defaultValue="ALL"
           onChange={(e) => search(e.target.value)}
         >
-          <option value="ALL">All</option>
+          <option value="All">All</option>
           <option value="Shirt">Shirt</option>
           <option value="Shoes">Shoes</option>
         </select>
@@ -106,14 +108,14 @@ function SearchProduct() {
               <th>Cart</th>
             </tr>
             {products.map((item) => (
-              <tr id={item.ProductId}>
-                <td>{item.ProductId}</td>
+              <tr id={item.ProductID}>
+                <td>{item.ProductID}</td>
                 <td>{item.Name}</td>
                 <td>{item.Price}</td>
                 <td>
                   <button
                     style={{ border: 'None', backgroundColor: 'transparent' }}
-                    onClick={() => addToWishlist(item.ProductId)}
+                    onClick={() => addToWishlist(item.ProductID)}
                   >
                     <img src={heart} width="25px" height="25px" />
                   </button>
@@ -121,7 +123,7 @@ function SearchProduct() {
                 <td>
                   <button
                     style={{ border: 'None', backgroundColor: 'transparent' }}
-                    onClick={() => addToInCart(item.ProductId)}
+                    onClick={() => addToInCart(item.ProductID)}
                   >
                     <img src={shopping_cart} width="25px" height="25px" />
                   </button>

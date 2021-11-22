@@ -37,9 +37,9 @@ function ProfileSeller() {
   }
   async function stock() {
     var newProduct = {
-      CitizenID: 1234567890121,
+      CitizenID: '1234567890121',
       ProductName: document.getElementById('ProductName').value,
-      Catagory: document.getElementById('Category').value,
+      Category: document.getElementById('Category').value,
       Brand: document.getElementById('Brand').value,
       Price: document.getElementById('Price').value,
     }
