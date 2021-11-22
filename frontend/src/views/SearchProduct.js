@@ -49,9 +49,9 @@ function SearchProduct() {
       console.log('add to wishlist Error')
     }
   }
-  async function addToInCart(ProductID) {
+  async function addToInCart(ProductID, Price) {
     try {
-      const data = await api.cart.add(ProductID)
+      const data = await api.cart.add(ProductID, Price)
       alert('add to cart complete')
     } catch (error) {
       console.log('add to cart Error')
@@ -138,7 +138,7 @@ function SearchProduct() {
                 <td>
                   <button
                     style={{ border: 'None', backgroundColor: 'transparent' }}
-                    onClick={() => addToInCart(item.ProductID)}
+                    onClick={() => addToInCart(item.ProductID, item.Price)}
                   >
                     <img src={shopping_cart} width="25px" height="25px" />
                   </button>

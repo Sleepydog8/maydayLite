@@ -16,6 +16,7 @@ function ProfileBuyer() {
       console.log('wishlist: ', data)
       setWishlist(data)
     } catch (error) {
+      console.log(error)
       console.log('get Product In Wishlist Error')
     }
   }
@@ -25,6 +26,8 @@ function ProfileBuyer() {
       console.log('inCart: ', data)
       setCart(data)
     } catch (error) {
+      console.log(error)
+
       console.log('get Product In Cart Error')
     }
   }
@@ -34,19 +37,24 @@ function ProfileBuyer() {
       console.log('Order: ', data)
       setOrder(data)
     } catch (error) {
+      console.log(error)
+
       console.log('get Product In Order Error')
     }
   }
   async function deleteCart(ProductID) {
     try {
       const data = await api.cart.delete(ProductID)
+      console.log('delete cart', data)
     } catch (error) {
       console.log('delete Cart Error')
     }
   }
   async function deleteWishlist(ProductID) {
     try {
+      //console.log(ProductID)
       const data = await api.wishlist.delete(ProductID)
+      console.log('delete wishlist', data)
     } catch (error) {
       console.log('delete Wishlist Error')
     }
@@ -94,14 +102,14 @@ function ProfileBuyer() {
             </thead>
             <tbody id="wishlist-productlist">
               {wishlist.map((item) => (
-                <tr id={item.ProductId}>
-                  <td>{item.ProductId}</td>
+                <tr id={item.ProductID}>
+                  <td>{item.ProductID}</td>
                   <td>{item.Name}</td>
                   <td>{item.Price}</td>
                   <td>
                     <button
                       class="btn btn-outline-secondary"
-                      onClick={() => deleteWishlist(item.ProductId)}
+                      onClick={() => deleteWishlist(item.ProductID)}
                     >
                       Delete
                     </button>
@@ -124,14 +132,14 @@ function ProfileBuyer() {
             </thead>
             <tbody id="cart-productlist">
               {cart.map((item) => (
-                <tr id={item.ProductId}>
-                  <td>{item.ProductId}</td>
+                <tr id={item.ProductID}>
+                  <td>{item.ProductID}</td>
                   <td>{item.Name}</td>
                   <td>{item.Price}</td>
                   <td>
                     <button
                       class="btn btn-outline-secondary"
-                      onClick={() => deleteCart(item.ProductId)}
+                      onClick={() => deleteCart(item.ProductID)}
                     >
                       Delete
                     </button>
@@ -156,8 +164,8 @@ function ProfileBuyer() {
             </thead>
             <tbody id="order-productlist">
               {order.map((item) => (
-                <tr id={item.ProductId}>
-                  <td>{item.ProductId}</td>
+                <tr id={item.ProductID}>
+                  <td>{item.ProductID}</td>
                   <td>{item.Name}</td>
                   <td>{item.Price}</td>
                   <td>{item.Status}</td>

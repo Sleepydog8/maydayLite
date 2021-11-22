@@ -9,6 +9,7 @@ function ProfileSeller() {
   async function getInStock() {
     try {
       const data = await api.product.getInStock()
+      console.log('In stock: ', data)
       setProductInStock(data)
     } catch (error) {
       console.log('get InStock error')
@@ -17,14 +18,15 @@ function ProfileSeller() {
   async function stock() {
     var newProduct = {
       CitizenID: '1234567890121',
-      ProductName: document.getElementById('ProductName').value,
+      Name: document.getElementById('Name').value,
       Category: document.getElementById('Category').value,
       Brand: document.getElementById('Brand').value,
       Price: document.getElementById('Price').value,
     }
     try {
+      console.log(newProduct)
       const data = await api.product.stock(newProduct)
-      console.log(data)
+      alert('Stock Complete')
     } catch (error) {
       console.log('stock product error')
     }
@@ -45,10 +47,10 @@ function ProfileSeller() {
       </div>
       <div class="row">
         <div class="col">
-          <label for="ProductName" class="form-label">
+          <label for="Name" class="form-label">
             Product Name{' '}
           </label>
-          <input type="text" id="ProductName" class="form-control ms-2"></input>
+          <input type="text" id="Name" class="form-control ms-2"></input>
         </div>
         <div class="col">
           <label for="Category" class="form-label">
@@ -86,16 +88,16 @@ function ProfileSeller() {
         </thead>
 
         <tbody id="stock-ProductList">
-          {productList.map((item) => (
-            <tr id={item.ProductName}>
-              <td>{item.ProductName}</td>
+          {productInStock.map((item) => (
+            <tr id={item.Name}>
+              <td>{item.Name}</td>
               <td>{item.Category}</td>
               <td>{item.Brand}</td>
               <td>{item.Price}</td>
               <td>
                 <button
                   class="btn btn-outline-secondary"
-                  onClick={() => deleteProduct(item.ProductId)}
+                  onClick={() => deleteProduct(item.ProductID)}
                 >
                   Delete
                 </button>

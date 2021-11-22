@@ -4,15 +4,16 @@ import axios from 'axios'
 export const product = {
   get: (category) =>
     axios
-      .get(`http://localhost:3001/products/category/${category}`)
+      .get(`http://localhost:3001/products/category/${category}`, null)
       .then(({ data }) => data),
   stock: (newProduct) =>
     axios
-      .post(`http://localhost:3001/products`, { newProduct })
+      .post(`http://localhost:3001/products`, newProduct)
       .then(({ data }) => data),
-  getInStock: axios
-    .get(`http://localhost:3001/products/stock/1234567890121`)
-    .then(({ data }) => data),
+  getInStock: () =>
+    axios
+      .get(`http://localhost:3001/products/stock/1234567890121`, null)
+      .then(({ data }) => data),
   delete: (ProductID) =>
     axios
       .delete(`http://localhost:3001/products/`, {
@@ -24,14 +25,16 @@ export const product = {
 
 //In Cart
 export const cart = {
-  get: axios
-    .get(`http://localhost:3001/inCarts/1234567890124`)
-    .then(({ data }) => data),
-  add: (ProductID) =>
+  get: () =>
+    axios
+      .get(`http://localhost:3001/inCarts/1234567890124`, null)
+      .then(({ data }) => data),
+  add: (ProductID, Price) =>
     axios
       .post(`http://localhost:3001/inCarts`, {
         ProductID,
         CitizenID: '1234567890124',
+        Price,
       })
       .then(({ data }) => data),
   delete: (ProductID) =>
@@ -48,9 +51,10 @@ export const cart = {
 
 //Order
 export const order = {
-  get: axios
-    .get(`http://localhost:3001/orders/1234567890124`)
-    .then(({ data }) => data),
+  get: () =>
+    axios
+      .get(`http://localhost:3001/orders/1234567890124`, null)
+      .then(({ data }) => data),
   checkout: axios
     .put(`http://localhost:3001/orders`, { CitizenID: '1234567890124' })
     .then(({ data }) => data),
@@ -58,9 +62,13 @@ export const order = {
 
 //Wishlist
 export const wishlist = {
-  get: axios
-    .get(`http://localhost:3001/wishlists/1234567890124`)
-    .then(({ data }) => data),
+  get: () =>
+    axios
+      .get(`http://localhost:3001/wishlists/1234567890124`, null)
+      .then(({ data }) => {
+        console.log(data)
+        return data
+      }),
   add: (ProductID) =>
     axios
       .post(`http://localhost:3001/wishlists`, {
