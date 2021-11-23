@@ -9,7 +9,8 @@ INSERT INTO SELLER VALUES
 ('1234567890122', 'shopname2');
 
 INSERT INTO DADDRESS VALUES
-    ('1','1234567890124','Firstnameja3','Lastnameja3','0123456783','addressno1', 'Tiewclub Road','Tiew handsome District','EiEi Sub-district','Kon Lhor Province','99691','ฝากให้อาหารแมวด้วยค้าบ');
+    ('1','1234567890123','Firstnameja55','Lastnameja66','0123456783','addressno1', 'Tiewclub Road','Tiew handsome District','EiEi Sub-district','Kon Lhor Province','99691','ฝากให้อาหารแมวด้วยค้าบ'),
+    ('1','1234567890124','Firstnameja55','Lastnameja66','0123456783','addressno1', 'Tiewclub Road','Tiew handsome District','EiEi Sub-district','Kon Lhor Province','99691','ฝากให้อาหารแมวด้วยค้าบ');
 
 INSERT INTO sys_account VALUE
 ('9999999990','tiewclub','Mayday Bank'),
@@ -27,15 +28,16 @@ INSERT INTO ORDERT VALUES
 (5, '1234567890123', '9999999990', 1, 4500, 'P', 'TH01234J5678F','ThailandPost', '2021-11-12 13:40:44');
 
 INSERT INTO PRODUCT VALUES
-('1','เสื้อ LV size S color W', 'Louis Vuitton', 'Shirt',  'เสื้อ Louis Vuitton ผู้ชาย ไซส์ S สีขาว', '5000', '4500', 'S', 1, '1234567890121'),
-('2','เสื้อ LV size S color B', 'Louis Vuitton', 'Shirt',  'เสื้อ Louis Vuitton ผู้ชาย ไซส์ S สีดำ', '5000', NULL, 'A', NULL, '1234567890121'),
-('3','เสื้อ LV size S color R', 'Louis Vuitton', 'Shirt',  'เสื้อ Louis Vuitton ผู้ชาย ไซส์ S สีแดง', '5000', NULL, 'A', NULL, '1234567890121'),
-('4','เสื้อ LV size M color W', 'Louis Vuitton', 'Shirt',  'เสื้อ Louis Vuitton ผู้ชาย ไซส์ M สีขาว', '5000', NULL, 'A', NULL, '1234567890121'),
-('5','เสื้อ LV size S color W', 'Louis Vuitton', 'Shirt',  'เสื้อ Louis Vuitton ผู้ชาย ไซส์ S สีขาว', '4500', '4500', 'S', 2, '1234567890122'),
-('6','เสื้อ LV size S color B', 'Louis Vuitton', 'Shirt',  'เสื้อ Louis Vuitton ผู้ชาย ไซส์ S สีดำ', '4500','4300', 'S', 3, '1234567890122'),
-('7','เสื้อ LV size S color R', 'Louis Vuitton', 'Shirt',  'เสื้อ Louis Vuitton ผู้ชาย ไซส์ S สีแดง', '4500', '4205', 'S', 4, '1234567890122'),
-('8','รองเท้า Lac color W', 'Lacoste', 'Shoes',  'รองเท้า Lacoste ผู้ชาย ไซส์ 43 สีขาว', '4800', NULL, 'A', NULL, '1234567890122'),
-('9','รองเท้า Lac color B', 'Lacoste', 'Shoes',  'รองเท้า Lacoste ผู้ชาย ไซส์ 43 สีดำ', '4800', NULL, 'A', NULL, '1234567890122');
+('1','Shirt LV size S color W', 'Louis Vuitton', 'Shirt',  'Shirt Louis Vuitton Men Size S White', '5000', '4500', 'S', 1, '1234567890121'),
+('2','Shirt LV size S color B', 'Louis Vuitton', 'Shirt',  'Shirt Louis Vuitton Men Size S Black', '5000', NULL, 'A', NULL, '1234567890121'),
+('3','Shirt LV size S color R', 'Louis Vuitton', 'Shirt',  'Shirt Louis Vuitton Men Size S Red', '5000', NULL, 'A', NULL, '1234567890121'),
+('4','Shirt LV size M color W', 'Louis Vuitton', 'Shirt',  'Shirt Louis Vuitton Men Size M White', '5000', NULL, 'A', NULL, '1234567890121'),
+('5','Shirt LV size S color W', 'Louis Vuitton', 'Shirt',  'Shirt Louis Vuitton Men ไซส์ S White', '4500', '4500', 'S', 2, '1234567890122'),
+('6','Shirt LV size S color B', 'Louis Vuitton', 'Shirt',  'Shirt Louis Vuitton Men ไซส์ S Black', '4500','4300', 'S', 3, '1234567890122'),
+('7','Shirt LV size S color R', 'Louis Vuitton', 'Shirt',  'Shirt Louis Vuitton Men ไซส์ S Red', '4500', '4205', 'S', 4, '1234567890122'),
+('8','Shoes Lac color W', 'Lacoste', 'Shoes',  'Shoes Lacoste Men Size 43 White', '4800', NULL, 'A', NULL, '1234567890122'),
+('9','Shoes Lac color B', 'Lacoste', 'Shoes',  'Shoes Lacoste Men Size 43 Black', '4800', NULL, 'A', NULL, '1234567890122');
+
 
 INSERT INTO STOCK VALUES
 ('1234567890121', 1, '2021-6-7 11:12:13'),
@@ -43,9 +45,3 @@ INSERT INTO STOCK VALUES
 ('1234567890121', 3, '2021-6-7 11:12:15'),
 ('1234567890121', 4, '2021-6-7 11:12:16');
 
-INSERT INTO IN_CART VALUES
-('1234567890124', '2', '5000', '2021-8-7 11:12:13'),
-('1234567890124', '3', '5000', '2021-8-7 11:12:20'),
-('1234567890124', '4', '5000', '2021-8-7 11:12:57'),
-('1234567890124', '8', '5000', '2021-8-7 11:13:10'),
-('1234567890124', '9', '5000', '2021-8-7 11:14:13');

@@ -29,11 +29,11 @@ CREATE TABLE SELLER(
 );
 
 CREATE TABLE PRODUCT(
-  ProductID INT NOT NULL,
+  ProductID INT NOT NULL AUTO_INCREMENT,
   Name VARCHAR(45) NOT NULL,
   Brand VARCHAR(45) NOT NULL,
   Category VARCHAR(45) NOT NULL,
-  Description VARCHAR(255) NOT NULL,
+  Description VARCHAR(255) NOT NULL DEFAULT '',
   Price Float NOT NULL,
   SoldPrice Float DEFAULT NULL,
   ProductStatus Char NOT NULL,
@@ -85,7 +85,7 @@ CREATE TABLE DADDRESS (
 );
 
 CREATE TABLE ORDERT(
-  OrderID INT NOT NULL,
+  OrderID INT NOT NULL AUTO_INCREMENT,
   BuyerID VARCHAR(13) NOT NULL,
   SysAccountNo VARCHAR(10) DEFAULT NULL,
   DAddressID INT NOT NULL,
@@ -121,7 +121,7 @@ CREATE TABLE IN_CART (
 
 
 CREATE TABLE TRANSFER_RECORD (
-    RecordID INT NOT NULL,
+    RecordID INT NOT NULL AUTO_INCREMENT,
     Amount FLOAT NOT NULL,
     TransferRecordDatetime DATETIME NOT NULL,
     AccountNo VARCHAR(10) NOT NULL,
@@ -136,3 +136,25 @@ CREATE TABLE TRANSFER_RECORD (
 
 alter table product add constraint fk_oid FOREIGN KEY (OrderID) REFERENCES Ordert(OrderID);
 
+
+DELIMITER //
+CREATE TRIGGER updateOrderStatus 
+AFTER Insert ON TRANSFER_RECORD FOR EACH ROW
+BEGIN
+    UPDATE Ordert
+    SET OrderStatus = "C"
+    WHERE Ordert.OrderID = new.OrderID; 
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER updateProductStatus 
+AFTER Update ON Ordert FOR EACH ROW
+BEGIN
+    IF new.OrderStatus = "O" THEN
+        UPDATE Product
+        SET ProductStatus = "S"
+        WHERE Product.OrderID = new.OrderID;
+    END IF;
+END //
+DELIMITER ;
